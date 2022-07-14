@@ -2,3 +2,5 @@
 __pycache__
 disturbed
 non_disturbed
+checkpoints
+lightning_logs
