@@ -166,6 +166,7 @@ def create_sequences(df, seq_len):
     dates = []
     target = []
     dates_target = []
+    target_idx = []
     ids = df.ts_id.unique()
     for id in ids:
         ts = df.query('ts_id == @id').to_numpy()
@@ -183,6 +184,7 @@ def create_sequences(df, seq_len):
             
             
             target.append(ts[i+seq_len,1] if i != len(ts)-seq_len else np.nan )
+            target_idx.append(ts[i+seq_len,4] if i != len(ts)-seq_len else np.nan )
             dates_target.append(ts[i+seq_len,0] if i != len(ts)-seq_len else np.nan )
             
         sequences.extend(subsequences)
@@ -193,4 +195,7 @@ def create_sequences(df, seq_len):
 
     print(f'Se crearon {len(sequences)} secuencias y {len(target)} targets.')
         
-    return np.array(sequences), divisor, np.array(indices), np.array(dates), np.array(target), np.array(dates_target)
+    return (np.array(sequences), divisor, 
+            np.array(indices), np.array(dates), 
+            np.array(target), np.array(dates_target),
+            np.array(target_idx))
