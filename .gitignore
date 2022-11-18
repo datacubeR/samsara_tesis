@@ -1,6 +1,9 @@
 .vscode
 __pycache__
 disturbed
-non_disturbed
+non-disturbed
 checkpoints
 lightning_logs
+*.zip
+.pytest_cache
+legacy
